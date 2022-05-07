@@ -1,38 +1,31 @@
 # <img src="https://raw.githubusercontent.com/IUTInfoAix-M2105/Syllabus/master/assets/logo.png" alt="class logo" class="logo"/> Développement d'application avec IHM
-
 ## IUT d’Aix-Marseille – Département Informatique Aix-en-Provence
 
-* **Ressource:** [R2.02](https://cache.media.enseignementsup-recherche.gouv.fr/file/SPE4-MESRI-17-6-2021/35/5/Annexe_17_INFO_BUT_annee_1_1411355.pdf)
-
-* **Responsables:**
-
-  * [Sébastien Nedjar](mailto:sebastien.nedjar@univ-amu.fr)
-
-* **Enseignants :**
-
-  * [Cyril Pain-Barre](mailto:cyril.pain-barre@univ-amu.fr)
-  * [Sophie Nabitz](mailto:sophie.nabitz@univ-avignon.fr)
-
-* **Besoin d'aide ?**
-
-  * Consulter et/ou créer des [issues](https://github.com/IUTInfoAix-R203/tp1-git/issues).
-  * [Email](mailto:sebastien.nedjar@univ-amu.fr) pour une question d'ordre privée, ou pour convenir d'un rendez-vous physique.
+- **Ressource :** [R2.02](https://cache.media.enseignementsup-recherche.gouv.fr/file/SPE4-MESRI-17-6-2021/35/5/Annexe_17_INFO_BUT_annee_1_1411355.pdf)
+- **Responsables :**
+  - [Sébastien Nedjar](mailto:sebastien.nedjar@univ-amu.fr)
+- **Enseignants :**
+  - [Cyril Pain-Barre](mailto:cyril.pain-barre@univ-amu.fr)
+  - [Sophie Nabitz](mailto:sophie.nabitz@univ-avignon.fr)
+- **Besoin d'aide ?**
+  - Consulter et/ou créer des [issues](https://github.com/IUTInfoAix-R203/tp1-git/issues).
+  - [Email](mailto:sebastien.nedjar@univ-amu.fr) pour une question d'ordre privée, ou pour convenir d'un rendez-vous physique.
 
 ## Aperçu du TP et objectifs d'apprentissage
 Ce TP explore deux mécanismes clefs de JavaFX : Les propriétés, les bindings.
 
-## TP :  Propriétés et Bindings
+## TP : Propriétés et Bindings
 
 JavaFX 17 regroupe un ensemble d'API permettant le développement d'applications graphiques modernes. Suite à la modularisation de la JVM, la [documentation](https://openjfx.io/javadoc/17/) de JavaFX est séparée de celle du langage [Java](https://docs.oracle.com/en/java/javase/17/docs/api/index.html).
 
 
-#### Création de votre fork du TP
+### Création de votre fork du TP
 
 La première chose que vous allez faire est de créer un fork d'un dépôt. Pour ce faire, rendez-vous sur le lien suivant : 
 
 < >
 
-Comme pour les précédents TP, GitHub va vous créer un dépôt contenant un fork du dépôt 'IUTInfoAix-R202/tp2' et s'appellant 'IUTInfoAix-R202-2022/tp2-votreUsername'. Vous apparaîtrez automatiquement comme contributeur de ce projet pour y pousser votre travail.
+Comme pour les précédents TP, GitHub va vous créer un dépôt contenant un fork du dépôt 'IUTInfoAix-R202/tp2' et s'appelant 'IUTInfoAix-R202-2022/tp2-votreUsername'. Vous apparaîtrez automatiquement comme contributeur de ce projet pour y pousser votre travail.
 
 Une fois votre dépôt créé, il vous suffit de l'importer dans IntelliJ pour commencer à travailler.
 
@@ -40,7 +33,7 @@ Une fois votre dépôt créé, il vous suffit de l'importer dans IntelliJ pour c
 
 #### Exercice 1
 
-En Java, une propriété est un élément d'une classe que l'on peut manipuler à l'aide de getters (lecture) et de setters (écriture). Les propriétés sont généralement représentées par des attributs de la classe mais elles pourraient aussi être stockées dans une base de données ou autre système d'information.
+En Java, une propriété est un élément d'une classe que l'on peut manipuler à l'aide de getters (lecture) et de setters (écriture). Les propriétés sont généralement représentées par des attributs de la classe, mais elles pourraient aussi être stockées dans une base de données ou autre système d'information.
 
 Classiquement la convention dite *"JavaBeans"*, définit qu'une classe possédant une propriété nommée `XXX` doit avoir une méthode `getXXX()` et `setXXX()`. En plus de ces méthodes, les propriétés JavaFX possèdent une troisième méthode `XXXProperty()` qui retourne un objet qui implémente l'interface `Property`.
 
@@ -67,7 +60,7 @@ Pour simplifier la vie du développeur, la plateforme Java offre des classes per
 - `ObjectProperty<T>` / `SimpleObjectProperty<T>`
     
     
-Par exemple, la classe abstraite `IntegerProperty` permet d'emballer une valeur de type entier et d'offrir des méthodes pour consulter et modifier la valeur mais également pour *"observer"* et *"lier"* les changements. La classe `SimpleIntegerProperty` quant à elle est une classe concrète prédéfinie permettant de créer une telle propriété.
+Par exemple, la classe abstraite `IntegerProperty` permet d'emballer une valeur de type entier et d'offrir des méthodes pour consulter et modifier la valeur, mais également pour *"observer"* et *"lier"* les changements. La classe `SimpleIntegerProperty` quant à elle est une classe concrète prédéfinie permettant de créer une telle propriété.
 
 Toutes les classes de propriétés implémentent l'interface `Observable` et offrent de ce fait, la possibilité d'enregistrer des observateurs (`Listener`) qui seront avertis lorsque la valeur de la propriété change.
 
@@ -89,8 +82,7 @@ Au final, dans `PropertyExample` :
 
 - Écrivez avec une autre expression *lambda*, l'initialisation de la variable d'instance `invalidationListener` qui est un écouteur d'invalidation de la valeur d'une propriété. Cet écouteur se contente d'afficher le texte `"The observable has been invalidated."` pour indiquer qu'un événement d'invalidation s'est déclenché **sans pour autant afficher la valeur de l'objet observé**.
 
-- Écrivez la méthode `addAndRemoveInvalidationListener()` dont les affichages serviront à comprendre le rôle d'un `InvalidationListener`.
- Cette méthode doit effectuer les actions suivantes :
+- Écrivez la méthode `addAndRemoveInvalidationListener()` dont les affichages serviront à comprendre le rôle d'un `InvalidationListener`. Cette méthode doit effectuer les actions suivantes :
     - Afficher sur la console une ligne vide
     - Afficher sur la console le texte `"Add invalidation listener."` puis ajouter l'objet `invalidationListener` comme écouteur de la propriété `anIntProperty`
     - Afficher le texte `"setValue() with 1024."` puis modifier la valeur de la propriété avec la méthode `setValue()` pour la fixer à 1024 (la même valeur qu'initialement afin d'observer le comportement de la propriété)
@@ -99,8 +91,7 @@ Au final, dans `PropertyExample` :
     - Afficher le texte `"Remove invalidation listener."` puis supprimer l'écouteur de la propriété 
     - Afficher le texte `"set() with 1024."` puis modifier une dernière fois la valeur de la propriété avec la méthode `set()` pour la remettre à 1024
 
-- Écrire la méthode `addAndRemoveChangeListener()` dont les affichages serviront à comprendre le rôle d'un `ChangeListener`. 
-Cette méthode doit effectuer les actions suivantes :
+- Écrire la méthode `addAndRemoveChangeListener()` dont les affichages serviront à comprendre le rôle d'un `ChangeListener`. Cette méthode doit effectuer les actions suivantes :
     - Afficher sur la console une ligne vide
     - Afficher sur la console le texte `"Add change listener."` puis ajouter l'objet `changeListener` comme écouteur de la propriété `anIntProperty`
     - Afficher le texte `"setValue() with 1024."` puis modifier la valeur de la propriété avec la méthode `setValue()` pour la fixer à 1024 (la même valeur qu'elle possède déjà afin d'observer le comportement de la propriété)
@@ -108,96 +99,13 @@ Cette méthode doit effectuer les actions suivantes :
     - Afficher le texte `"setValue() with 5012."` puis modifier à nouveau la valeur de la propriété avec la méthode `setValue()` pour la fixer à 5012
     - Afficher le texte `"Remove change listener."` puis supprimer l'écouteur de la propriété 
     - Afficher le texte `"set() with 1024."` puis modifier une dernière fois la valeur de la propriété avec la méthode `set()` pour la remettre à 1024
-  
-
-Vous devriez remarquer que le premier `setValue()` est sans effet dans les deux cas, car la propriété est suffisamment intelligente pour s'apercevoir qu'il ne modifie pas sa valeur.
-
-Vous devriez aussi remarquer que l'`InvalidationListener` n'est averti que lors du premier changement effectif de valeur, à la différence du `ChangeListener` qui est systématiquement averti lorsque la valeur change. En effet, après un changement, une propriété demeure invalide tant qu'on ne demande pas sa valeur avec `get()` ou `getValue()`.
-
-Pour le constater, vous pouvez ignorer les tests et ajouter l'affichage de la valeur dans l'expression lambda de l'écouteur `invalidationListener`. Dans ce cas, tout changement de valeur avertira l'`InvalidationListener` puisque ce dernier valide maintenant à chaque fois la valeur lors du `get()`.
-
-#### Exercice 2
-Un des avantages des propriétés JavaFX est la possibilité de pouvoir les lier entre-elles. Ce mécanisme, appelé **binding**, permet de mettre à jour automatiquement une propriété en fonction d'une autre.
-
-Dans les interfaces utilisateurs, on a fréquemment ce type de liens. Par exemple, lorsqu'on déplace le curseur d'un slider, la valeur d'un champ texte changera (ou la luminosité d'une image, la taille d'un graphique, le niveau sonore, etc.).
-
-Il est possible de lier deux propriétés **A** et **B** de manière :
-
-- *Unidirectionnelle* : un changement de **A** entraînera un changement de **B** mais pas l'inverse (**B** ne devant pas être modifié autrement).
-
-- *Bidirectionnelle* : un changement de **A** entraînera un changement de **B** et réciproquement (les deux sont modifiables).
-    
-La méthode `bind()` permet de créer un lien unidirectionnel. La méthode doit être appelée sur la propriété qui sera *"soumise"* à l'autre (celle qui est passée en paramètre). Une propriété ne peut être liée (asservie) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Si l'on tente de modifier la valeur de la propriété associée d'une autre manière, une exception sera levée. 
-
-Allez dans le paquetage `exercice2` et ouvrir la classe `PropertyExampleContinued`, puis l'implémenter en respectant les consignes suivantes (se référer aux tests pour les détails d'affichage) :
-
-- Écrire la méthode `bindAndUnbindOnePropertyToAnother()`. Cette méthode doit effectuer les actions suivantes :
-   - Déclarer une variable `otherProperty` du type `IntegerProperty` (classe abstraite) et lui affecter une instance de la classe concrète `SimpleIntegerProperty` contenant 0 comme valeur initiale.
-   
-   - Afficher la valeur de `otherProperty`
-   
-   - Soumettre (lier unidirectionnellement) la valeur de `otherProperty` à celle de `anIntProperty`.
-   
-   - Afficher la valeur de `otherProperty`
-   
-   - Modifier la valeur de la propriété `anIntProperty` avec la valeur 7168
-   
-   - Afficher la valeur de `otherProperty`
-   
-   - Délier les deux propriétés
-   
-   - Afficher la valeur de `otherProperty`
-   
-   - Modifier la valeur de la propriété `anIntProperty` avec la valeur 8192
-   
-   - Afficher la valeur de `otherProperty`
-   
-  Chaque action sera tracée avec des affichages pour bien comprendre ce qui se passe.
-  
-Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de la fonction `bindAndUnbindOnePropertyToAnother()` à travers l'affichage sur la console.
-
-#### Exercice 3
-Parfois, une propriété dépend d'une autre mais avec une relation plus complexe. Il est ainsi possible de créer des **propriétés calculées**.
-
-Deux techniques (dites de *"haut-niveau"*) sont à disposition (elles peuvent être combinées) :
-
-   - Utiliser la classe utilitaire `Bindings` qui possède de nombreuses méthodes statiques permettant d'effectuer des opérations impliquant un ou plusieurs objets observables (dont les propriétés). Par exemple, `Bindings.multiply(unePropriete, autrePropriete)`.
-
-   - Utiliser les méthodes disponibles dans les classes qui représentent les propriétés; ces méthodes peuvent être chaînées (Fluent API). Par exemple, `unePropriete.multiply(autrePropriete)`.
-
-Des opérations de conversions sont parfois nécessaires si le type des propriétés à lier n'est pas le même. Par exemple pour lier un champ texte (`StringProperty`) à un slider dont la valeur est numérique (`DoubleProperty`). 
-
-Un jeu d'opérations est disponible aussi bien avec la classe `Bindings` qu'avec les méthodes chaînables :
-- `min()`, `max()`
-
-- `equal()`, `notEqual()`, `lessThan()`, `lessThanOrEqual()`, …
-
-- `isNull()`, `isNotNull()`, `isEmpty()`, `isNotEmpty()`, …
-
-- `convert()`, `concat()`, `format()`, …
-
-- `valueAt()`, `size()`, …
-
-- `when(cond).then(val1).otherwise(val2)` 
-
-- et beaucoup d'autres que l'on peut découvrir en parcourant la JavaDoc de la classe [`Bindings`](https://openjfx.io/javadoc/11/javafx.base/javafx/beans/binding/Bindings.html).
-
-Cet exercice illustre l'utilisation de multiples binding de haut niveau afin de mettre à jour automatiquement la valeur de l'aire d'un triangle à partir des coordonnées de ses 3 sommets. Allez dans le paquetage `exercice3` et ouvrez la classe `TriangleArea`. Implémentez sa méthode `createBinding()` en respectant les consignes suivantes :
-
-- En utilisant uniquement la classe `Bindings`, soumettez la propriété `area` aux propriétés `x1`,`x2`,`x3`,`y1`,`y2`,`y3` représentant les coordonnées des trois sommets d'un triangle.
-
-- La formule à utiliser pour le calcul de l'aire est celle dite du déterminant : *|(x1\*y2 - x1\*y3 + x2\*y3 - x2\*y1 + x3\*y1 - x3\*y2)|/2*
-
-- Pour chacune des parties du calcul, vous utiliserez un object du type `NumberBinding`
-
-- Attention à ne pas demander une division entière dans le calcul final ! Pour cela forcer la division par 2.0 (et non 2).
 
 Vous devrez aussi implémenter la méthode `printResult()` qui génère l'affichage correspondant au test du même nom.
 
 Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de la fonction `main()` à travers l'affichage sur la console. Comme vous pourrez le voir, la valeur de l'aire a bien été calculée automatiquement avant chaque affichage.
 
 #### Exercice 3 : Variante 1
-Dans cette variante, on vous demande de réaliser la même application mais en utilisant autant que possible la Fluent API au lieu de la classe `Bindings`.
+Dans cette variante, on vous demande de réaliser la même application, mais en utilisant autant que possible la Fluent API au lieu de la classe `Bindings`.
 
 En outre, `printResult()` devra se contenter d'afficher la valeur d'une expression de type `StringExpression` nommée `output`, qui doit être liée aux six coordonnées et à l'aire du triangle pour mettre à jour la chaîne à afficher. Rajoutez la création de ce binding dans la méthode `createBinding()`. Pour cela, regardez les méthodes proposées par la classe `Bindings` dans la JavaDoc qui retournent une `StringExpression`. `Bindings.format()` pourrait par exemple être utilisée. 
 
@@ -207,9 +115,9 @@ Par exemple, la ligne :
 StringExpression output = Bindings.format("La valeur de %d/3 est %.1f", valProperty, valProperty.divide(3.0));
 ```
 
-permet de créer une chaîne liée à la valeur d'une propriété entière (%d) et de sa division réelle par 3, avec une précision d'une décimale (%.1f).
+Permet de créer une chaîne liée à la valeur d'une propriété entière (%d) et de sa division réelle par 3, avec une précision d'une décimale (%.1f).
 
-Si besoin, vous pouvez utiliser des bindings intermédiaires, et utiliser `Bindings` pour supporter la valeur absolue dans la formule. 
+Si besoin, vous pouvez utiliser des bindings intermédiaires et utiliser `Bindings` pour supporter la valeur absolue dans la formule. 
 
 
 #### Exercice 3 : Variante 2 
@@ -244,7 +152,7 @@ Dans le Paquetage `exercice4`, ouvrir la classe `TriangleAreaCalculator` et l'im
 
 - Écrire la méthode `addSliders()` qui ajoute tous les sliders dans la bonne ligne de la grille. Chaque slider aura un label qui permettra à l'utilisateur de savoir sur quelle propriété il agit. Il faudra donc rajouter les labels dans la première colonne.
 
-- Écrire la méthode `addPointLabels()` qui ajoute les labels des points (*P1*, *P2*, *P3*) au dessus des 2 sliders réglant les coordonnées du point correspondant.
+- Écrire la méthode `addPointLabels()` qui ajoute les labels des points (*P1*, *P2*, *P3*) au-dessus des 2 sliders réglant les coordonnées du point correspondant.
  
 - Écrire la méthode `addArea()` qui ajoutera le champ de texte et son label pour afficher la valeur de l'aire.
 
@@ -255,7 +163,7 @@ Comme pour les exercices précédents, vous devez activer les tests les uns apr�
 #### Exercice 5
 L'exercice précédent illustre comment les propriétés et les bindings facilitent la création d'une application où un modèle (une classe métier comme `TriangleArea` pour faire simple) pourra facilement être associé à une vue (une IHM).
 
-Nous allons aller plus loin pour montrer que ce principe peut s'appliquer en cascade. En plus de nos points soumis à des sliders, nous allons dessiner le triangle en soumettant ses arrêtes aux coordonnées des points.
+Nous allons aller plus loin pour montrer que ce principe peut s'appliquer en cascade. En plus de nos points soumis à des sliders, nous allons dessiner le triangle en soumettant ses arêtes aux coordonnées des points.
 
 Pour dessiner, nous allons rajouter un panneau de type `Pane` de 500 de haut par 500 de large. À l’intérieur de ce panneau, les arrêtes du triangle seront dessinées par 3 segments (objets de la classe `Line`). Les points de départ et d'arrivée de ces segments seront liés aux coordonnées de l'objet `triangleArea`.
 
@@ -267,15 +175,15 @@ Dans le paquetage `exercice5`, ouvrir la classe `TriangleAreaCalculatorAndDrawer
 
 - La classe `TriangleAreaCalculatorAndDrawer` doit respecter les mêmes contraintes que la classe `TriangleAreaCalculator`.
 
-- La méthode `addDrawPane()` doit configurer la variable d'instance `drawPane` pour qu'elle ait une taille de 500 par 500. L'échelle sera donc de 50/1. Son arrière plan sera de couleur gris clair. Les trois côtés du triangle sont à ajouter à ce panneau. Ce panneau devra occuper toutes les colonnes de la dernière ligne du `GridPane`.
+- La méthode `addDrawPane()` doit configurer la variable d'instance `drawPane` pour qu'elle ait une taille de 500 par 500. L'échelle sera donc de 50/1. Son arrière-plan sera de couleur gris clair. Les trois côtés du triangle sont à ajouter à ce panneau. Ce panneau devra occuper toutes les colonnes de la dernière ligne du `GridPane`.
 
-- Le méthode `createBinding()` qui doit, en plus des bindings de l'exercice précédent, rajouter les liens entre les coordonnées du triangle et les coordonnées des 3 segments `p1p2`, `p2p3` et `p3p1`. Ne pas oublier de respecter l'échelle dans le calcul des propriétés.
+- La méthode `createBinding()` qui doit, en plus des bindings de l'exercice précédent, rajouter les liens entre les coordonnées du triangle et les coordonnées des 3 segments `p1p2`, `p2p3` et `p3p1`. Ne pas oublier de respecter l'échelle dans le calcul des propriétés.
 
 Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de votre IHM. Comme vous pourrez le voir, le calcul de la valeur de l'aire et le dessin est fait automatiquement à chaque fois que nécessaire.
 
 #### Exercice 6
 
-Si la liaison doit se faire dans les deux sens on parle de Binding **bidirectionnel**. Une liaison bidirectionnelle s'effectue de manière similaire, mais en utilisant la méthode `bindBidirectional()`. Une propriété ne peut être liée (asservie) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Par contre, les liens bidirectionnels (`bindBidirectional()`) peuvent être multiples.
+Si la liaison doit se faire dans les deux sens, on parle de Binding **bidirectionnel**. Une liaison bidirectionnelle s'effectue de manière similaire, mais en utilisant la méthode `bindBidirectional()`. Une propriété ne peut être liée (asservie) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Par contre, les liens bidirectionnels (`bindBidirectional()`) peuvent être multiples.
 
 Dans cet exercice, on va synchroniser la taille d'un cercle à la valeur d'un slider et celle d'un champ de texte. Quand l'utilisateur modifiera la valeur du slider, le rayon du cercle sera modifié ainsi que l'affichage du champ de texte. De même quand la valeur écrite dans le champ de texte sera modifiée, le slider et le cercle se modifieront.
 
@@ -340,7 +248,7 @@ La classe contient de nombreuses méthodes permettant de réagir aux changements
   
   * La suppression de texte (`isDeleted()`)
   
-Les opérations disponibles sont des opérations de bas niveau qui permettent d'intervenir lors de la frappe des caractères dans le champ mais qui nécessitent plus de travail pour créer des filtres plus complexes (adresse e-mail ou numéro de téléphone valide, etc.). Pour comprendre le fonctionnnement de ce mécanisme, vous pouvez étudier et modifier la méthode `addTextField()` pour que les valeurs du champ de texte soit toujours compatibles avec les valeurs du slider.
+Les opérations disponibles sont des opérations de bas niveau qui permettent d'intervenir lors de la frappe des caractères dans le champ, mais qui nécessitent plus de travail pour créer des filtres plus complexes (adresse e-mail ou numéro de téléphone valide, etc.). Pour comprendre le fonctionnement de ce mécanisme, vous pouvez étudier et modifier la méthode `addTextField()` pour que les valeurs du champ de texte soit toujours compatibles avec les valeurs du slider.
 
 #### Exercice 7
 
@@ -354,21 +262,21 @@ Pour ce faire, nous n'allons implémenter le comportement de la balle pratiqueme
 
 Dans le paquetage `exercice7`, ouvrir la classe `Ball` et l'implémenter en respectant les consignes suivantes :
 
-- Écrire le contructeur de la classe `Ball`. Il devra correctement initialiser les différentes variables d'instance. Les propriétés `velocityX` et `velocityY` expriment la vitesse de la balle en pixel/nanoseconde sur les deux axes (X et Y). Initialisez-les avec une petite valeur, telles que 150E-9 et 100E-9. Ajouter le cercle `ball` au panneau `parent`. L'initialisation des bindings sera déléguée à la méthode `createBindings()` qui sera appelée en fin de constructeur.
+- Écrire le constructeur de la classe `Ball`. Il devra correctement initialiser les différentes variables d'instance. Les propriétés `velocityX` et `velocityY` expriment la vitesse de la balle en pixel/nanoseconde sur les deux axes (X et Y). Initialisez-les avec une petite valeur, telles que 150E-9 et 100E-9. Ajouter le cercle `ball` au panneau `parent`. L'initialisation des bindings sera déléguée à la méthode `createBindings()` qui sera appelée en fin de constructeur.
 
 - Écrire la méthode `createBindings()` qui initialise tous les bindings entre les différentes propriétés de la classe.
     - La position et le rayon du cercle servant à materialiser la balle devront être correctement soumis aux variables d'instance correspondantes.
 
     - Les expressions booléennes `isBouncingOffVerticalWall` et `isBouncingOffHorizontalWall` doivent indiquer si la balle a atteint un bord vertical ou horizontal. Elles seront soumises à la position de la balle et aux dimensions du panneau `parent`. Il faut donc comparer la position de la balle à la largeur ou à la hauteur du parent (au rayon près). Regardez dans les méthodes de `Bindings` celles qui concernent les booléens.
 
-    - Les deux bindings `bounceOffVerticalWall` et `bounceOffHorizontalWall` permettront d'inverser le sens de la balle quand elle rebondit sur un bord. Liez-les, en utilisant une construction du type `Bindings.when().then().otherwise()`, aux expressions booléennes précédentes ainsi qu'à la vitesse de la balle (en "calculant" éventuellement son opposé si il y a rebondissement).
+    - Les deux bindings `bounceOffVerticalWall` et `bounceOffHorizontalWall` permettront d'inverser le sens de la balle quand elle rebondit sur un bord. Liez-les, en utilisant une construction du type `Bindings.when().then().otherwise()`, aux expressions booléennes précédentes ainsi qu'à la vitesse de la balle (en "calculant" éventuellement son opposé s'il y a rebondissement).
 
-- Écrire la méthode `move(long elapsedTimeInNanoseconds)` qui met à jour la vitesse (avec les bindings précédents) et la position de la balle (en fonction du temps écoulé, de la position précédente et de la vitesse). Faites bien attention aux unités car la vitesse de la balle doit être exprimée en *pixel/nanoseconde*. Cette méthode sera appelée régulièrement par l'animation de la classe `BouncingBall` qui est démarrée et arrêtée par les boutons.
+- Écrire la méthode `move(long elapsedTimeInNanoseconds)` qui met à jour la vitesse (avec les bindings précédents) et la position de la balle (en fonction du temps écoulé, de la position précédente et de la vitesse). Faites bien attention aux unités, car la vitesse de la balle doit être exprimée en *pixel/nanoseconde*. Cette méthode sera appelée régulièrement par l'animation de la classe `BouncingBall` qui est démarrée et arrêtée par les boutons.
 
 #### Exercice 8
 Maintenant que nous disposons d'une balle rebondissante *à la pong*, nous allons réaliser le jeu complet. Pour rajouter de la difficulté de jeu, notre pong se jouera à un seul joueur qui actionnera les raquettes à la souris. La vitesse de jeu sera donc lente pour permettre d'avoir le temps de réagir.
 
-Notre application finale devrait devrait ressembler à :
+Notre application finale devrait ressembler à :
 
 ![](src/main/resources/assets/pong.png)
 
@@ -382,7 +290,7 @@ Dans le Paquetage `exercice8`, ouvrir la classe `Paddle` et l'implémenter en re
 
 - Dans le constructeur, configurer la raquette pour être un rectangle de 20 de largeur et de 50 de hauteur. Changer la couleur de remplissage en bleu. Changer le curseur pour qu'une main fermée apparaisse quand on survole la raquette.
  
-- Ajouteur un écouteur d'évenement sur la propriété `OnMousePressed`. Cet écouteur doit mettre à jour les variables d'instance `initPaddleTranslateY` et `paddleDragAnchorY` avec, respectivement, la translation courante en Y du paddle, et la position en Y du clic. Ces informations sont utiles pour calculer le déplacement de la raquette que l'utilisateur souhaite effectuer quand il la drag-and-drop, puisque le drag-and-drop débute forcément par un clic sur la raquette.
+- Ajouter un écouteur d'événement sur la propriété `OnMousePressed`. Cet écouteur doit mettre à jour les variables d'instance `initPaddleTranslateY` et `paddleDragAnchorY` avec, respectivement, la translation courante en Y du paddle et la position en Y du clic. Ces informations sont utiles pour calculer le déplacement de la raquette que l'utilisateur souhaite effectuer quand il la drag-and-drop, puisque le drag-and-drop débute forcément par un clic sur la raquette.
 
 - Ajouter un écouteur d'événement sur la propriété `OnMouseDragged` qui modifie la valeur de la propriété `paddleY` en fonction de la position courante de la souris, de la position initiale de la main sur la raquette et de la translation en Y de la raquette qui ont été mémorisées lors du clic.
 
@@ -398,7 +306,7 @@ Ouvrir maintenant la classe `SlowPong`  et l'implémenter en respectant les cons
 
 - Écrire la méthode `configureStage()` qui s'occupe de créer la scène, la dimensionne à 500 par 500, l'intègre dans l'objet `stage` et personnalise le titre.
 
-- Écrire la méthode `createPongPane()` qui va créer un objet `Pane` y placer les deux raquettes, la balle et le boutton *start*.
+- Écrire la méthode `createPongPane()` qui va créer un objet `Pane` y placer les deux raquettes, la balle et le bouton *start*.
 
 - Écrire la méthode `createStartButton` qui va créer un objet `Button` avec le texte `"Start!"`. Rajouter un écouteur pour que lorsque le bouton est actionné, l'animation soit lancée. Asservir sa propriété `visible` à la propriété `startVisible` de notre application.
 
@@ -406,8 +314,8 @@ Ouvrir maintenant la classe `SlowPong`  et l'implémenter en respectant les cons
  
 - Écrire les méthodes `isBouncingOffPaddles()`, `isBouncingOffLeftPaddle()`, `isBouncingOffRightPaddle()`, `isBouncingOffVerticalWall()` et `isBouncingOffHorizontalWall()` qui retournent un booléen qui indique la situation de rebond dans laquelle se trouve la balle.
   
-- Écrire la méthodes `checkBouncing()` qui utilise les méthodes précédentes pour implémenter la logique de jeu. Si la balle frappe contre une raquette elle rebondit horizontallement, si elle tape un mur horizontal, c'est un changement en Y qui sera effectué et si elle frappe un mur vertical, la partie recommence.
+- Écrire la méthode `checkBouncing()` qui utilise les méthodes précédentes pour implémenter la logique de jeu. Si la balle frappe contre une raquette elle rebondit horizontalement, si elle tape un mur horizontal, c'est un changement en Y qui sera effectué et si elle frappe un mur vertical, la partie recommence.
 
 - Écrire la méthode `moveBall()` qui recalcule les coordonnées de la balle en fonction de la vitesse et du temps écoulé.
 
-- Écrire la méthodes `startNewGame()` qui stoppe l'animation et replace la balle au centre.
+- Écrire la méthode `startNewGame()` qui stoppe l'animation et replace la balle au centre.
