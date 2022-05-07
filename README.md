@@ -134,6 +134,8 @@ En effet, c'est quand l'on commence à lier des propriétés venant d'objets dif
 
 Dans cet exercice, nous allons montrer comment nous allons lier notre calculateur d'aire d'un triangle à des composants graphiques. Chaque coordonnée des trois sommets du triangle sera contrôlée par un objet `Slider`. Pour ce faire nous asservirons chaque coordonnée à la propriété `value` du slider associé. Un champ de texte sera soumis à la propriété `area` de l'objet `triangleArea`.
 
+Dans cet exercice, les tests ne vous sont pas donnés. Vous devez en vous inspirant des exemples précédents écrire les tests, les un après les autres en mode TDD. A minima, pour chaque fonctionnalité demandée dans la spécification ci-après, vous devez écrire au moins un test qui vous permet de vérifier que vous satisfaisez bien les besoins exprimés.
+
 Votre fenêtre principale devrait ressembler à cela à la fin de l'exercice :
 
 ![triangle](src/main/resources/assets/triangle.png)
@@ -168,6 +170,8 @@ L'exercice précédent illustre comment les propriétés et les bindings facilit
 
 Nous allons aller plus loin pour montrer que ce principe peut s'appliquer en cascade. En plus de nos points soumis à des sliders, nous allons dessiner le triangle en soumettant ses arêtes aux coordonnées des points.
 
+Dans cet exercice, les tests ne vous sont pas donnés. Vous devez en vous inspirant des exemples précédents écrire les tests, les un après les autres en mode TDD. A minima, pour chaque fonctionnalité demandée dans la spécification ci-après, vous devez écrire au moins un test qui vous permet de vérifier que vous satisfaisez bien les besoins exprimés.
+
 Pour dessiner, nous allons rajouter un panneau de type `Pane` de 500 de haut par 500 de large. À l’intérieur de ce panneau, les arrêtes du triangle seront dessinées par 3 segments (objets de la classe `Line`). Les points de départ et d'arrivée de ces segments seront liés aux coordonnées de l'objet `triangleArea`.
 
 Votre fenêtre principale devrait ressembler à cela à la fin de l'exercice :
@@ -189,6 +193,8 @@ Comme pour les exercices précédents, vous devez activer les tests les uns apr�
 Si la liaison doit se faire dans les deux sens, on parle de Binding **bidirectionnel**. Une liaison bidirectionnelle s'effectue de manière similaire, mais en utilisant la méthode `bindBidirectional()`. Une propriété ne peut être liée (asservie) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Par contre, les liens bidirectionnels (`bindBidirectional()`) peuvent être multiples.
 
 Dans cet exercice, on va synchroniser la taille d'un cercle à la valeur d'un slider et celle d'un champ de texte. Quand l'utilisateur modifiera la valeur du slider, le rayon du cercle sera modifié ainsi que l'affichage du champ de texte. De même quand la valeur écrite dans le champ de texte sera modifiée, le slider et le cercle se modifieront.
+
+Dans cet exercice, les tests ne vous sont pas donnés. Vous devez en vous inspirant des exemples précédents écrire les tests, les un après les autres en mode TDD. A minima, pour chaque fonctionnalité demandée dans la spécification ci-après, vous devez écrire au moins un test qui vous permet de vérifier que vous satisfaisez bien les besoins exprimés.
 
 Votre fenêtre principale devrait ressembler à cela à la fin de l'exercice :
 
@@ -260,6 +266,8 @@ Les opérations disponibles sont des opérations de bas niveau qui permettent d'
 #### Exercice 7
 
 Dans cet exercice, notre objectif va être de simuler une balle rebondissante *à la pong*. Notre balle se déplacera à une vitesse fixe et changera de direction à chaque fois qu'elle arrivera contre l'un des bords de la fenêtre.
+
+Dans cet exercice, les tests ne vous sont pas donnés. Vous devez en vous inspirant des exemples précédents écrire les tests, les un après les autres en mode TDD. A minima, pour chaque fonctionnalité demandée dans la spécification ci-après, vous devez écrire au moins un test qui vous permet de vérifier que vous satisfaisez bien les besoins exprimés.
   
 Notre application finale devrait ressembler à cela :
 
@@ -283,6 +291,8 @@ Dans le paquetage `exercice7`, ouvrir la classe `Ball` et l'implémenter en resp
 #### Exercice 8
 
 Maintenant que nous disposons d'une balle rebondissante *à la pong*, nous allons réaliser le jeu complet. Pour rajouter de la difficulté de jeu, notre pong se jouera à un seul joueur qui actionnera les raquettes à la souris. La vitesse de jeu sera donc lente pour permettre d'avoir le temps de réagir.
+
+Dans cet exercice, les tests ne vous sont pas donnés. Vous devez en vous inspirant des exemples précédents écrire les tests, les un après les autres en mode TDD. A minima, pour chaque fonctionnalité demandée dans la spécification ci-après, vous devez écrire au moins un test qui vous permet de vérifier que vous satisfaisez bien les besoins exprimés.
 
 Notre application finale devrait ressembler à :
 
