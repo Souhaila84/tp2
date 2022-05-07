@@ -22,7 +22,8 @@ public class AppTest extends ApplicationTest {
 
     @Test
     public void should_increment_nbClick_when_click_on_button_again() {
-        clickOn("#buttonClick").clickOn("#buttonClick");
+        clickOn("#buttonClick");
+        clickOn("#buttonClick");
         verifyThat("#buttonClick", hasText("2"));
     }
 
