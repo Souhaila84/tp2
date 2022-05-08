@@ -30,9 +30,7 @@ Comme pour les précédents TP, GitHub va vous créer un dépôt contenant un fo
 
 Une fois votre dépôt créé, il vous suffit de l'importer dans IntelliJ pour commencer à travailler.
 
-### Première étape : découvertes des propriétés et des bindings
-
-#### Exercice 1
+### Exercice 1
 
 En Java, une propriété est un élément d'une classe que l'on peut manipuler à l'aide de getters (lecture) et de setters (écriture). Les propriétés sont généralement représentées par des attributs de la classe, mais elles pourraient aussi être stockées dans une base de données ou autre système d'information.
 
@@ -84,11 +82,17 @@ Au final, dans `PropertyExample` :
 
 - Écrivez la méthode `addAndRemoveInvalidationListener()` dont les affichages serviront à comprendre le rôle d'un `InvalidationListener`. Cette méthode doit effectuer les actions suivantes :
   - Afficher sur la console une ligne vide
+
   - Afficher sur la console le texte `"Add invalidation listener."` puis ajouter l'objet `invalidationListener` comme écouteur de la propriété `anIntProperty`
+
   - Afficher le texte `"setValue() with 1024."` puis modifier la valeur de la propriété avec la méthode `setValue()` pour la fixer à 1024 (la même valeur qu'initialement afin d'observer le comportement de la propriété)
+
   - Afficher le texte `"set() with 2105."` puis modifier à nouveau la valeur de la propriété avec la méthode `set()` pour la fixer à 2105
+
   - Afficher le texte `"setValue() with 5012."` puis modifier à nouveau la valeur de la propriété avec la méthode `setValue()` pour la fixer à 5012
+
   - Afficher le texte `"Remove invalidation listener."` puis supprimer l'écouteur de la propriété
+
   - Afficher le texte `"set() with 1024."` puis modifier une dernière fois la valeur de la propriété avec la méthode `set()` pour la remettre à 1024
 
 - Écrire la méthode `addAndRemoveChangeListener()` dont les affichages serviront à comprendre le rôle d'un `ChangeListener`. Cette méthode doit effectuer les actions suivantes :
@@ -100,11 +104,98 @@ Au final, dans `PropertyExample` :
   - Afficher le texte `"Remove change listener."` puis supprimer l'écouteur de la propriété
   - Afficher le texte `"set() with 1024."` puis modifier une dernière fois la valeur de la propriété avec la méthode `set()` pour la remettre à 1024
 
+Remarquez que le premier `setValue()` est sans effet dans les deux cas, car la propriété est suffisamment intelligente pour s'apercevoir qu'il ne modifie pas sa valeur effective.
+
+Vous devriez aussi remarquer que l'`InvalidationListener` n'est averti que lors du premier changement de valeur, à la différence du `ChangeListener` qui est systématiquement averti lorsque la valeur change.
+
+Après un changement, une **propriété demeure invalide tant qu'on ne lit pas sa valeur** avec `get()` ou `getValue()`.
+
+Pour le constater, vous pouvez ignorer les tests et ajouter l'affichage de la valeur dans l'expression lambda de l'écouteur `invalidationListener`. Dans ce cas, tout changement de valeur avertira l'`InvalidationListener` puisque ce dernier va revalider systématiquement la valeur en utilisant `get()`.
+
+### Exercice 2
+Un des avantages des propriétés JavaFX est la possibilité de pouvoir les lier entre-elles. Ce mécanisme, appelé **binding**, permet de mettre à jour automatiquement une propriété en fonction d'une autre.
+
+Dans les interfaces utilisateurs, on a fréquemment ce type de liens. Par exemple, lorsqu'on déplace le curseur d'un slider, la valeur d'un champ texte changera (ou la luminosité d'une image, la taille d'un graphique, le niveau sonore, etc.).
+
+Il est possible de lier deux propriétés **A** et **B** de manière :
+
+- *Unidirectionnelle* : un changement de **A** entraînera un changement de **B**, mais pas l'inverse (**B** ne devant pas être modifié autrement).
+
+- *Bidirectionnelle* : un changement de **A** entraînera un changement de **B** et réciproquement (les deux sont modifiables).
+
+La méthode `bind()` permet de créer un lien unidirectionnel. La méthode doit être appelée sur la propriété qui sera *"enchainée"* à l'autre (celle qui est passée en paramètre). Une propriété ne peut être liée (enchainée) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Si l'on tente de modifier la valeur de la propriété associée d'une autre manière, une exception sera levée.
+
+Allez dans le paquetage `exercice2` et ouvrir la classe `PropertyExampleContinued`, puis l'implémenter en respectant les consignes suivantes (se référer aux tests pour les détails d'affichage) :
+
+- Écrire la méthode `bindAndUnbindOnePropertyToAnother()`. Cette méthode doit effectuer les actions suivantes :
+  - Déclarer une variable `otherProperty` du type `IntegerProperty` (classe abstraite) et lui affecter une instance de la classe concrète `SimpleIntegerProperty` contenant 0 comme valeur initiale.
+
+  - Afficher la valeur de `otherProperty`
+
+  - Enchainer (lier de manière unidirectionnelle) la valeur de `otherProperty` à celle de `anIntProperty`.
+
+  - Afficher la valeur de `otherProperty`
+
+  - Modifier la valeur de la propriété `anIntProperty` avec la valeur 7168
+
+  - Afficher la valeur de `otherProperty`
+
+  - Délier les deux propriétés
+
+  - Afficher la valeur de `otherProperty`
+
+  - Modifier la valeur de la propriété `anIntProperty` avec la valeur 8192
+
+  - Afficher la valeur de `otherProperty`
+
+  Chaque action sera tracée avec des affichages pour bien comprendre ce qui se passe.
+
+Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de la fonction `bindAndUnbindOnePropertyToAnother()` à travers l'affichage sur la console.
+
+### Exercice 3
+Parfois, une propriété dépend d'une autre mais avec une relation plus complexe. Il est ainsi possible de créer des **propriétés calculées**.
+
+Deux techniques (dites de *"haut-niveau"*) sont à disposition (elles peuvent être combinées) :
+
+- Utiliser la classe utilitaire `Bindings` qui possède de nombreuses méthodes statiques permettant d'effectuer des opérations impliquant un ou plusieurs objets observables (dont les propriétés). Par exemple, `Bindings.multiply(unePropriete, autrePropriete)`.
+
+- Utiliser les méthodes disponibles dans les classes qui représentent les propriétés; ces méthodes peuvent être chaînées (Fluent API). Par exemple, `unePropriete.multiply(autrePropriete)`.
+
+Des opérations de conversions sont parfois nécessaires si le type des propriétés à lier n'est pas le même. Par exemple pour lier un champ texte (`StringProperty`) à un slider dont la valeur est numérique (`DoubleProperty`).
+
+Un jeu d'opérations est disponible aussi bien avec la classe `Bindings` qu'avec les méthodes chainable :
+
+- `min()`, `max()`
+
+- `equal()`, `notEqual()`, `lessThan()`, `lessThanOrEqual()`, …
+
+- `isNull()`, `isNotNull()`, `isEmpty()`, `isNotEmpty()`, …
+
+- `convert()`, `concat()`, `format()`, …
+
+- `valueAt()`, `size()`, …
+
+- `when(cond).then(val1).otherwise(val2)`
+
+- et beaucoup d'autres que l'on peut découvrir en parcourant la JavaDoc de la classe [`Bindings`](https://openjfx.io/javadoc/17/javafx.base/javafx/beans/binding/Bindings.html).
+
+Cet exercice illustre l'utilisation de multiples binding de haut niveau afin de mettre à jour automatiquement la valeur de l'aire d'un triangle à partir des coordonnées de ses 3 sommets.
+Allez dans le paquetage `exercice3` et ouvrez la classe `TriangleArea`. Implémentez sa méthode `createBinding()` en respectant les consignes suivantes :
+
+- En utilisant uniquement la classe `Bindings`, soumettez la propriété `area` aux propriétés `x1`,`x2`,`x3`,`y1`,`y2`,`y3` représentant les coordonnées des trois sommets d'un triangle.
+
+- La formule à utiliser pour le calcul de l'aire est celle dite du déterminant : *|(x1\*y2 - x1\*y3 + x2\*y3 - x2\*y1 + x3\*y1 - x3\*y2)|/2*
+
+- Pour chacune des parties du calcul, vous utiliserez un object du type `NumberBinding`
+
+- Attention à ne pas demander une division entière dans le calcul final ! Pour cela forcer la division par 2.0 (et non 2).
+
+
 Vous devrez aussi implémenter la méthode `printResult()` qui génère l'affichage correspondant au test du même nom.
 
 Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de la fonction `main()` à travers l'affichage sur la console. Comme vous pourrez le voir, la valeur de l'aire a bien été calculée automatiquement avant chaque affichage.
 
-#### Exercice 3 : Variante 1
+### Exercice 3 : Variante 1
 
 Dans cette variante, on vous demande de réaliser la même application, mais en utilisant autant que possible la Fluent API au lieu de la classe `Bindings`.
 
@@ -120,13 +211,13 @@ Permet de créer une chaîne liée à la valeur d'une propriété entière (%d) 
 
 Si besoin, vous pouvez utiliser des bindings intermédiaires et utiliser `Bindings` pour supporter la valeur absolue dans la formule.
 
-#### Exercice 3 : Variante 2
+### Exercice 3 : Variante 2
 
 Dans cette seconde variante, on vous demande d'utiliser un *low-level binding* pour réaliser le calcul de l'aire. Il est possible de définir une liaison de plus bas niveau en redéfinissant la méthode abstraite `computeValue()` d'une des classes de binding (`DoubleBinding`, `BooleanBinding`, `StringBinding`, …).
 
 Un exemple est disponible dans la partie `Lier des propriétés` du [Cours 2](https://iutinfoaix-m2105.github.io/CoursIHMJava/cours2/#36).
 
-#### Exercice 4
+### Exercice 4
 
 Comme on vient de le voir, les bindings permettent de lier des propriétés entre elles avec des relations plus ou moins complexes, et peuvent s'avérer pertinents pour propager des calculs entre propriétés d'un même objet. Mais ce n'est pas leur intérêt majeur.
 
@@ -164,7 +255,7 @@ Dans le Paquetage `exercice4`, ouvrir la classe `TriangleAreaCalculator` et l'im
 
 Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de votre IHM. Comme vous pourrez le voir, le calcul de la valeur de l'aire est fait automatiquement à chaque fois que nécessaire.
 
-#### Exercice 5
+### Exercice 5
 
 L'exercice précédent illustre comment les propriétés et les bindings facilitent la création d'une application où un modèle (une classe métier comme `TriangleArea` pour faire simple) pourra facilement être associé à une vue (une IHM).
 
@@ -188,7 +279,7 @@ Dans le paquetage `exercice5`, ouvrir la classe `TriangleAreaCalculatorAndDrawer
 
 Comme pour les exercices précédents, vous devez activer les tests les uns après les autres et soumettre votre solution après chaque itération du cycle principal du workflow. Une fois vos tests validés, prenez du temps pour observer le comportement de votre IHM. Comme vous pourrez le voir, le calcul de la valeur de l'aire et le dessin est fait automatiquement à chaque fois que nécessaire.
 
-#### Exercice 6
+### Exercice 6
 
 Si la liaison doit se faire dans les deux sens, on parle de Binding **bidirectionnel**. Une liaison bidirectionnelle s'effectue de manière similaire, mais en utilisant la méthode `bindBidirectional()`. Une propriété ne peut être liée (asservie) qu'à une seule autre si le lien est unidirectionnel (`bind()`). Par contre, les liens bidirectionnels (`bindBidirectional()`) peuvent être multiples.
 
@@ -221,6 +312,7 @@ Bien qu'il ne vous soit rien demandé d'autre dans cet exercice, il n'est pas in
 En effet, on peut associer un formateur de texte à tous les composants qui héritent de `TextInputControl` (propriété `TextFormatter`). Ce formateur est un composant de type `TextFormatter<V>` qui permet de définir :
 
 - Un convertisseur permettant de convertir le texte du composant en une valeur d'un autre type (par exemple un type numérique, int, double, …).
+
 - Un filtre permettant d'intercepter et de modifier les caractères saisis par l'utilisateur pendant l'édition du texte (n'accepter que les chiffres par ex.).
 
 Le formateur peut définir un filtre ou un convertisseur ou les deux. Le filtre et le convertisseur sont transmis dans le constructeur du formateur qui possède les surcharges suivantes :
@@ -263,7 +355,7 @@ La classe contient de nombreuses méthodes permettant de réagir aux changements
   
 Les opérations disponibles sont des opérations de bas niveau qui permettent d'intervenir lors de la frappe des caractères dans le champ, mais qui nécessitent plus de travail pour créer des filtres plus complexes (adresse e-mail ou numéro de téléphone valide, etc.). Pour comprendre le fonctionnement de ce mécanisme, vous pouvez étudier et modifier la méthode `addTextField()` pour que les valeurs du champ de texte soit toujours compatibles avec les valeurs du slider.
 
-#### Exercice 7
+### Exercice 7
 
 Dans cet exercice, notre objectif va être de simuler une balle rebondissante *à la pong*. Notre balle se déplacera à une vitesse fixe et changera de direction à chaque fois qu'elle arrivera contre l'un des bords de la fenêtre.
 
@@ -288,7 +380,7 @@ Dans le paquetage `exercice7`, ouvrir la classe `Ball` et l'implémenter en resp
 
 - Écrire la méthode `move(long elapsedTimeInNanoseconds)` qui met à jour la vitesse (avec les bindings précédents) et la position de la balle (en fonction du temps écoulé, de la position précédente et de la vitesse). Faites bien attention aux unités, car la vitesse de la balle doit être exprimée en *pixel/nanoseconde*. Cette méthode sera appelée régulièrement par l'animation de la classe `BouncingBall` qui est démarrée et arrêtée par les boutons.
 
-#### Exercice 8
+### Exercice 8
 
 Maintenant que nous disposons d'une balle rebondissante *à la pong*, nous allons réaliser le jeu complet. Pour rajouter de la difficulté de jeu, notre pong se jouera à un seul joueur qui actionnera les raquettes à la souris. La vitesse de jeu sera donc lente pour permettre d'avoir le temps de réagir.
 
